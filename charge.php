@@ -1,5 +1,10 @@
 <?php
+
 require_once("./vendor/autoload.php");
+require_once("./config/db.php");
+require_once("./lib/pdo_db.php");
+require_once("./modals/Customer.php");
+require_once("./modals/Transaction.php");
 
 \Stripe\Stripe::setApiKey("sk_test_51HvJhyAKyiNbhJfoktZacSvdyFLz7Fypt8ejdilbkN4uoTdRdQmzEePpJS6dIDfYApX8m0n6Ketzt30VvvqfNIfM00iCuOIOoS");
 
@@ -26,6 +31,35 @@ $charge = \Stripe\Charge::create(array(
     "customer" => $customer->id
 ));
 
-//redirect to successs
+//instantiate customer
+$customer = new Customer();
 
-header("Location:success.php?tid=".$charge->id."&product=".$charge->description);
+//customer data
+$customerData = [
+    'id' => $charge -> customer,
+    'first_name' => $first_name,
+    'last_name' => $last_name,
+    'email' => $email
+];
+
+//call customer method
+$customer -> addCustomer($customerData);
+
+//instantiate transaction
+$transaction = new Transaction();
+
+//transaction data
+$transactionData = [
+    'id' => $charge -> id,
+    'customer_id' => $charge -> customer,
+    'product' => $charge -> description,
+    'amount' => $charge -> amount,
+    'currency' => $charge -> currency,
+    'status' => $charge -> status
+];
+
+//call transaction method
+$transaction -> addTransaction($transactionData);
+
+//redirect to successs
+header("Location:success.php?tid=" . $charge->id . "&product=" . $charge->description);
