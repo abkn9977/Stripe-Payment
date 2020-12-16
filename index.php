@@ -25,6 +25,9 @@
                 <div id="card-errors" role="alert"></div>
             </div>
             <button>Submit Payment</button>
+            <br><br>
+            <a href="./customers.php" class="btn btn-danger btn-rounded">Show customers</a>
+            <a href="./transactions.php" class="btn btn-danger btn-rounded">Transaction history</a>
         </form>
     </div>
 

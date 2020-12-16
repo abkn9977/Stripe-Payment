@@ -27,4 +27,19 @@ class Transaction{
             return false;
         }
     }
+
+    public function showTransaction(){
+        //select query
+
+        $this -> db -> query("SELECT * FROM transactions ORDER BY created_at DESC");
+
+        //exucute
+
+        if($this -> db -> execute()){
+            return $this -> db -> resultset();
+        }else{
+            return false;
+        }
+
+    }
 }

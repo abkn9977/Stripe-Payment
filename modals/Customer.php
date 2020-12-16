@@ -25,4 +25,17 @@ class Customer{
             return false;
         }
     }
+
+    public function showCustomer(){
+        //select query
+        $this -> db -> query("SELECT * FROM customers ORDER BY created_at DESC");
+
+        //execute
+
+        if($this -> db -> execute()){
+            return $this -> db -> resultset();
+        }else{
+            return false;
+        }
+    }
 }
