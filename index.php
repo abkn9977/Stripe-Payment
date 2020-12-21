@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-        <h2 class="mt-4 text-center">Intro to React course [$30]</h2>
+        <h2 class="mt-4 text-center">Pay 5000 Rupees</h2>
         <form action="charge.php" method="post" id="payment-form">
             <div class="form-row">
                 <input type="text" name="first_name" class="form-control my-3 StripeElement StripeElement--empty" placeholder="First name">
